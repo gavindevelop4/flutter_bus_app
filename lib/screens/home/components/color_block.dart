@@ -14,18 +14,6 @@ class ColorBlock extends StatelessWidget {
   final String destination;
   final int timeUntil;
 
-  // final List<int> colorCodes = <int>[
-  //   900,
-  //   800,
-  //   700,
-  //   600,
-  //   500,
-  //   400,
-  //   300,
-  //   200,
-  //   100,
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Container(

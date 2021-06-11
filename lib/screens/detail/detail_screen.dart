@@ -26,9 +26,9 @@ class _DetailScreenState extends State<DetailScreen> {
           elevation: 0,
           leading: Builder(
             builder: (context) => IconButton(
-              icon: FaIcon(FontAwesomeIcons.bars),
+              icon: FaIcon(FontAwesomeIcons.arrowLeft),
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                Navigator.pop(context);
               },
             ),
           )),
