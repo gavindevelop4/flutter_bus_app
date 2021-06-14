@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_bus_app/screens/home/components/color_block.dart';
 
 // data
-import '/api/entry.dart';
+import '/api/bus.dart' as bus;
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key, required this.title}) : super(key: key);
@@ -18,12 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
   ScrollController controller = ScrollController();
   bool closeTopContainer = false;
 
-  List data = [];
+  List<bus.Bus> data = bus.busList;
 
   void getData() {
-    List responseList = ENTRY_DATA;
-    setState(() {
-      data = responseList;
+    bus.getList().then((value) => {
+      setState(() {
+        data = bus.busList;
+      })
     });
   }
 
@@ -78,10 +79,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Container(
                     height: 100,
                     child: ColorBlock(
-                        title: data[index]['route'],
-                        index: data[index]['id'],
-                        timeUntil: data[index]['timeUntil'],
-                        destination: data[index]['destination']),
+                        title: data[index].route,
+                        index: data[index].id,
+                        timeUntil: data[index].timeUntil,
+                        destination: data[index].destination),
                   );
                 }),
           ))
