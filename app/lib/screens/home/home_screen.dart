@@ -22,10 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void getData() {
     bus.getList().then((value) => {
-      setState(() {
-        data = bus.busList;
-      })
-    });
+          setState(() {
+            data = bus.busList;
+          })
+        });
   }
 
   void initState() {
@@ -41,51 +41,53 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 100),
-            alignment: Alignment.topCenter,
-            height: closeTopContainer ? 0 : 80,
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-            child: Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(vertical: 12.5, horizontal: 20),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
-              child: TextField(
-                decoration: InputDecoration(
-                    icon: FaIcon(FontAwesomeIcons.search),
-                    border: InputBorder.none),
-              ),
-            ),
-            // ),
-          ),
-          Flexible(
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 100),
+              alignment: Alignment.topCenter,
+              height: closeTopContainer ? 0 : 80,
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25))),
-            child: ListView.builder(
-                controller: controller,
-                padding: const EdgeInsets.only(top: 20),
-                itemCount: data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 100,
-                    child: ColorBlock(
-                        title: data[index].route,
-                        index: data[index].id,
-                        timeUntil: data[index].timeUntil,
-                        destination: data[index].destination),
-                  );
-                }),
-          ))
-        ]));
+                height: 50,
+                padding: EdgeInsets.symmetric(vertical: 12.5, horizontal: 20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25)),
+                child: TextField(
+                  decoration: InputDecoration(
+                      icon: FaIcon(FontAwesomeIcons.search),
+                      border: InputBorder.none),
+                ),
+              ),
+              // ),
+            ),
+            Flexible(
+                child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25))),
+              child: ListView.builder(
+                  controller: controller,
+                  padding: const EdgeInsets.only(top: 20),
+                  itemCount: data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      height: 100,
+                      child: ColorBlock(
+                          title: data[index].route,
+                          index: data[index].id,
+                          timeUntil: data[index].timeUntil,
+                          destination: data[index].destination),
+                    );
+                  }),
+            ))
+          ]),
+    );
   }
 }
